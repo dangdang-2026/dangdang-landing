@@ -7,7 +7,7 @@ import { ABOUT_COPY } from '@/constants/copy';
 /** 큰 문장 속 강조 말. 스크롤하면 회색에서 이 색(ink)으로 진해진다 */
 function Em({ children }: { children: ReactNode }) {
   return (
-    <span data-about-em className="text-ink">
+    <span data-about-em className="font-extrabold text-ink">
       {children}
     </span>
   );
@@ -31,7 +31,7 @@ export default function AboutSection() {
 
         <h2
           id="about-title"
-          className="mt-7 text-2xl leading-[1.45] font-bold text-grey-400 md:text-[32px] xl:text-[38px]"
+          className="mt-7 text-2xl leading-[1.45] font-semibold text-grey-400 md:text-[32px] xl:text-[38px]"
         >
           진단 뒤의 하루는 <MobileBreak />
           <Em>막막하지 않아야</Em> 해요.
