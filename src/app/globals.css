@@ -31,11 +31,23 @@
   --font-sans:
     'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
+  --font-display: var(--font-poppins), sans-serif;
+
   --radius-md: 12px;
   --spacing-gutter: 20px;
 
   /* 1440 디자인 기준 콘텐츠 폭 */
   --container-content: 1200px;
+}
+
+@layer components {
+  /* 01 Hero 배경: 아래로 갈수록 진해지는 노랑 + 왼쪽 아래 주황빛 + 가운데 흰빛 */
+  .hero-bg {
+    background:
+      radial-gradient(35.7% 35.7% at 10.7% 75%, rgb(255 182 39 / 0.45), transparent),
+      radial-gradient(31.3% 35.7% at 50% 39.3%, rgb(255 255 255 / 0.55), transparent),
+      linear-gradient(180deg, #ffe7b8 0%, #ffd07a 55%, #ffc04a 100%);
+  }
 }
 
 @layer base {
