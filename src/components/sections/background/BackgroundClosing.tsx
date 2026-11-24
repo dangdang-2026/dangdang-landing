@@ -36,7 +36,7 @@ function VisitCard({
 /**
  * Background 마지막 장면.
  * 진료일과 다음 진료일 사이 막대를 당당이가 걸어가며 노랗게 채우고, 지나간 자리마다 기록 카드가 쌓인다.
- * 이어서 문장 속 「빈칸」이 노랗게 차오른다.
+ * 이어서 문장 속 「빈칸」이 점선 빈 칸에서 노란 그라데이션으로 차오른다.
  */
 export default function BackgroundClosing() {
   return (
@@ -98,15 +98,20 @@ export default function BackgroundClosing() {
             당당은 병원과 병원 사이,
           </span>
         </span>
-        <span className="block overflow-hidden pb-2">
+        <span className="-mb-6 block overflow-hidden px-6 pb-8">
           <span data-bg-closing-line className="block">
             그{' '}
-            <span className="relative inline-block rounded-2xl border-[3px] border-dashed border-grey-300 px-3 md:px-4">
+            <span
+              data-bg-blank
+              className="relative inline-block rounded-[18px] border-[3px] border-dashed border-transparent px-3 md:rounded-3xl md:px-5"
+            >
               <span
                 data-bg-blank-fill
-                className="absolute inset-[-3px] origin-left rounded-2xl bg-yellow-300"
+                className="absolute inset-[-3px] origin-left rounded-[inherit] bg-[linear-gradient(120deg,#ffe3a8_0%,#ffc94d_55%,#fbb315_100%)] shadow-[0_12px_32px_rgba(251,179,21,0.35)]"
               />
-              <span className="relative">빈칸</span>
+              <span data-bg-blank-text className="relative">
+                빈칸
+              </span>
             </span>
             을 채워요.
           </span>
