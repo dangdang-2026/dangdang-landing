@@ -25,14 +25,10 @@ export default function HowItWorksStacked({ className }: { className?: string })
               <br />
               {step.description[1]}
             </p>
-            <div className="relative -mx-10 mt-8 h-[440px] overflow-hidden px-10 pt-4">
-              <PhoneMockup className="w-[min(280px,72vw)]">
+            <div className="relative -mx-10 mt-8 h-[440px] overflow-hidden [mask-image:linear-gradient(to_bottom,#000_75%,transparent)] px-10 pt-4">
+              <PhoneMockup className="w-[min(280px,72vw)] shadow-none">
                 <Image src={step.screen} alt={step.alt} sizes="280px" className="w-full" />
               </PhoneMockup>
-              <span
-                aria-hidden
-                className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-white"
-              />
             </div>
           </li>
         ))}
