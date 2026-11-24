@@ -28,3 +28,9 @@ export const HERO_CARDS = {
   next: { label: '다음 측정', value: '오후 1:30', caption: '점심 식후 1시간 · 알림 예약됨' },
   message: ['기록은 제가 모아 둘게요.', '진료 때 같이 봐요!'],
 } as const;
+
+/** 섹션 사이 흘러가는 띠 문구 */
+export const MARQUEE_WORDS = {
+  first: ['오늘도 당당하게', '병원 기준 그대로', '끊기지 않는 하루', '진료 땐 한 장으로'],
+  second: ['식사 시작만 누르면', '잴 때를 알려 드려요', '기록은 당당이가', '진료 때 같이 봐요'],
+} as const;

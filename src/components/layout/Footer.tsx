@@ -26,6 +26,12 @@ export default function Footer() {
               <br />
               하루가 끊기지 않게.
             </p>
+            <p className="mt-5 text-[13px] leading-[1.7] text-grey-500">
+              당당은 의료기기가 아니며 진단이나 치료를 대신하지 않아요.
+              <br />
+              측정 기준과 처방은 담당 의료진의 안내를 따라 주세요.
+              <br />몸 상태가 평소와 다르거나 걱정되면 바로 다니는 병원에 연락하세요.
+            </p>
           </div>
 
           <nav
@@ -53,14 +59,8 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-16 border-t border-grey-200 pt-8 lg:ml-auto lg:w-[640px] lg:border-none lg:pt-0">
-          <p className="text-[13px] leading-[1.7] text-grey-500">
-            당당은 의료기기가 아니며 진단이나 치료를 대신하지 않아요.
-            <br />
-            측정 기준과 처방은 담당 의료진의 안내를 따라 주세요.
-            <br />몸 상태가 평소와 다르거나 걱정되면 바로 다니는 병원에 연락하세요.
-          </p>
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+        <div className="mt-16 flex flex-col gap-4 border-t border-grey-200 pt-8 md:flex-row md:items-center md:justify-between">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {FOOTER_LEGAL.map((link) => (
               <li key={link.label}>
                 <a
@@ -77,7 +77,7 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 font-display text-[13px] text-grey-400">
+          <p className="font-display text-[13px] text-grey-400">
             © 2026 DANGDANG. All rights reserved.
           </p>
         </div>
