@@ -1,8 +1,7 @@
-import appToday from '@/assets/images/app-today-before-meal.png';
 import Header from '@/components/layout/Header';
 import HeroMotion from '@/components/motion/HeroMotion';
 import HeroCards from '@/components/sections/hero/HeroCards';
-import PhoneMockup from '@/components/ui/PhoneMockup';
+import HeroPhoneSlideshow from '@/components/sections/hero/HeroPhoneSlideshow';
 import { HERO_COPY } from '@/constants/copy';
 
 /**
@@ -69,12 +68,7 @@ export default function HeroSection() {
             data-hero-phone
             className="w-full xl:absolute xl:top-[190px] xl:left-[37.07%] xl:w-[360px]"
           >
-            <PhoneMockup
-              screen={appToday}
-              alt="당당 앱 오늘 화면. 저녁 드실 때 눌러 달라는 카드와 오늘 혈당 기록"
-              preload
-              className="w-full"
-            />
+            <HeroPhoneSlideshow />
           </div>
           <HeroCards />
         </div>
