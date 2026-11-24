@@ -41,7 +41,7 @@ export default function HeroSection() {
           </h1>
           <p
             data-hero-line
-            className="mt-3 text-[15px] leading-[1.6] text-grey-700 xl:mt-5 xl:text-[17px] xl:text-white/92"
+            className="mt-3 text-[15px] leading-[1.6] font-medium text-grey-700 xl:mt-5 xl:text-[17px] xl:text-white"
           >
             {HERO_COPY.descriptionLines[0]}
             <br />
@@ -67,7 +67,6 @@ export default function HeroSection() {
         <div className="relative mx-auto mt-10 h-[min(420px,110vw)] w-[min(300px,72vw)] md:h-[460px] md:w-[320px] xl:contents">
           <div
             data-hero-phone
-            data-depth="0.4"
             className="w-full xl:absolute xl:top-[190px] xl:left-[37.07%] xl:w-[360px]"
           >
             <PhoneMockup
