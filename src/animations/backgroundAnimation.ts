@@ -22,6 +22,8 @@ export function setupBackgroundAnimation(root: HTMLElement) {
     gsap.set(q('[data-bg-progress]'), { scaleX: 0 });
     gsap.set(q('[data-bg-record]'), { opacity: 0, y: -8, scale: 0.8 });
     gsap.set(q('[data-bg-blank-fill]'), { scaleX: 0 });
+    gsap.set(q('[data-bg-blank]'), { borderColor: '#ffd184', backgroundColor: '#fffaf0' });
+    gsap.set(q('[data-bg-blank-text]'), { color: '#d1d6db' });
     gsap.set(q('[data-bg-walker]'), { left: '0%' });
 
     const tl = gsap.timeline({
@@ -76,6 +78,17 @@ export function setupBackgroundAnimation(root: HTMLElement) {
         q('[data-bg-blank-fill]'),
         { scaleX: 1, duration: 0.7, ease: 'power2.inOut' },
         'walk+=1.8'
+      )
+      .to(
+        q('[data-bg-blank]'),
+        { borderColor: 'transparent', backgroundColor: 'transparent', duration: 0.3 },
+        '<0.4'
+      )
+      .to(q('[data-bg-blank-text]'), { color: '#191f28', duration: 0.4 }, '<')
+      .fromTo(
+        q('[data-bg-blank]'),
+        { scale: 1 },
+        { scale: 1.08, duration: 0.15, yoyo: true, repeat: 1, ease: 'power2.out' }
       )
       .to({}, { duration: 0.8 });
 

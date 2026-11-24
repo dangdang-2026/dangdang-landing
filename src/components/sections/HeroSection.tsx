@@ -10,8 +10,8 @@ import { HERO_COPY } from '@/constants/copy';
  */
 export default function HeroSection() {
   return (
-    <section id="hero" aria-labelledby="hero-title" className="p-3 lg:p-6">
-      <HeroMotion className="hero-bg relative isolate mx-auto max-w-[1392px] overflow-hidden rounded-[28px] px-5 pt-5 lg:rounded-[40px] lg:px-12 lg:pt-8 xl:h-[900px]">
+    <section id="hero" aria-labelledby="hero-title" className="hero-bg">
+      <HeroMotion className="relative isolate mx-auto max-w-[1392px] overflow-hidden px-5 pt-5 lg:px-12 lg:pt-8 xl:h-[900px]">
         <p
           data-hero-word
           aria-hidden
@@ -22,17 +22,14 @@ export default function HeroSection() {
 
         <Header />
 
-        <div className="relative mt-12 text-center xl:absolute xl:top-[542px] xl:left-16 xl:mt-0 xl:text-left">
-          <p
-            data-hero-line
-            className="text-[15px] font-bold text-yellow-600 xl:text-[19px] xl:text-white/90"
-          >
+        <div className="relative z-20 mt-12 text-center xl:absolute xl:top-[542px] xl:left-16 xl:mt-0 xl:text-left">
+          <p data-hero-line className="text-[15px] font-bold text-yellow-600 xl:text-[19px]">
             {HERO_COPY.eyebrow}
           </p>
           <h1
             id="hero-title"
             data-hero-title
-            className="mt-3 text-[28px] leading-[1.3] font-bold text-ink md:text-[36px] xl:mt-5 xl:text-[40px] xl:text-white"
+            className="mt-3 text-[28px] leading-[1.3] font-bold text-ink md:text-[36px] xl:mt-5 xl:text-[40px]"
           >
             {HERO_COPY.titleLines[0]}
             <br />
@@ -40,7 +37,7 @@ export default function HeroSection() {
           </h1>
           <p
             data-hero-line
-            className="mt-3 text-[15px] leading-[1.6] font-medium text-grey-700 xl:mt-5 xl:text-[17px] xl:text-white"
+            className="mt-3 text-[15px] leading-[1.6] font-medium text-grey-700 xl:mt-5 xl:text-[17px]"
           >
             {HERO_COPY.descriptionLines[0]}
             <br />
@@ -55,7 +52,7 @@ export default function HeroSection() {
             </a>
             <a
               href={HERO_COPY.secondaryCta.href}
-              className="rounded-2xl bg-white/70 px-5 py-3.5 text-[15px] font-bold text-ink transition-colors hover:bg-white xl:px-6 xl:py-4 xl:text-base"
+              className="rounded-2xl bg-grey-100 px-5 py-3.5 text-[15px] font-bold text-ink transition-colors hover:bg-grey-200 xl:px-6 xl:py-4 xl:text-base"
             >
               {HERO_COPY.secondaryCta.label}
             </a>
@@ -72,6 +69,12 @@ export default function HeroSection() {
           </div>
           <HeroCards />
         </div>
+
+        {/* 폰 아랫부분이 툭 잘리지 않고 페이지로 이어지게 흰색으로 서서히 사라진다 */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-b from-transparent to-white md:h-44"
+        />
       </HeroMotion>
     </section>
   );

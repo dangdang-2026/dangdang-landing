@@ -16,7 +16,10 @@ export default function HeroCards() {
         data-depth="1"
         className="absolute top-24 -left-36 hidden w-[200px] md:block xl:top-[230px] xl:left-[10.78%] xl:w-[230px]"
       >
-        <GlassCard data-hero-float className="flex flex-col gap-1.5">
+        <GlassCard
+          data-hero-float
+          className="flex flex-col gap-1.5 shadow-[0_12px_32px_rgba(25,31,40,0.08)]"
+        >
           <p className="text-[13px] font-medium text-grey-700">{today.label}</p>
           <p className="text-xl font-bold text-ink xl:text-2xl">{today.value}</p>
           <p className="text-[13px] text-grey-700">{today.caption}</p>
@@ -43,7 +46,10 @@ export default function HeroCards() {
         data-depth="0.8"
         className="absolute top-[470px] left-[68.97%] hidden xl:block"
       >
-        <GlassCard data-hero-float className="flex h-[100px] items-center gap-3">
+        <GlassCard
+          data-hero-float
+          className="flex h-[100px] items-center gap-3 shadow-[0_12px_32px_rgba(25,31,40,0.08)]"
+        >
           <CharacterAvatar />
           <p className="text-sm leading-[1.5] font-medium whitespace-nowrap text-grey-700">
             {message[0]}
