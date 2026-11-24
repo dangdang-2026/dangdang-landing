@@ -1,4 +1,5 @@
 import { MOTION_QUERIES, SplitText, gsap } from '@/animations/gsap';
+import { setupHeroWordDesktop, setupHeroWordMobile } from '@/animations/heroWordAnimation';
 
 /**
  * 히어로 애니메이션. PC와 모바일을 나누고, 모션 줄이기 사용자에게는 아무것도 하지 않는다.
@@ -7,14 +8,15 @@ import { MOTION_QUERIES, SplitText, gsap } from '@/animations/gsap';
 export function setupHeroAnimation(root: HTMLElement) {
   const mm = gsap.matchMedia();
   const q = gsap.utils.selector(root);
+  const word = q('[data-hero-word]')[0];
 
   mm.add(MOTION_QUERIES.desktop, () => {
     const title = SplitText.create(q('[data-hero-title]'), { type: 'words', mask: 'words' });
+    const cleanupWord = setupHeroWordDesktop(root, word);
 
     // 1. 처음 들어왔을 때: 카피가 단어별로 올라오고, 폰과 카드가 차례로 나타난다
     gsap
       .timeline({ defaults: { ease: 'power3.out' } })
-      .from(q('[data-hero-word]'), { opacity: 0, y: 40, duration: 1.2 })
       .from(title.words, { yPercent: 100, duration: 0.8, stagger: 0.06 }, 0.15)
       .from(q('[data-hero-line]'), { opacity: 0, y: 20, duration: 0.7, stagger: 0.1 }, 0.35)
       .from(q('[data-hero-phone]'), { opacity: 0, y: 120, duration: 1.1 }, 0.2)
@@ -46,18 +48,22 @@ export function setupHeroAnimation(root: HTMLElement) {
     };
     root.addEventListener('pointermove', onMove);
 
-    // 4. 아래로 스크롤하면 배경 글자는 옆으로, 카드는 서로 다른 속도로 위로 빠진다
+    // 4. 아래로 스크롤하면 카드가 서로 다른 속도로 위로 빠진다 (배경 글자는 heroWordAnimation)
     const scrollTrigger = { trigger: root, start: 'top top', end: 'bottom top', scrub: true };
-    gsap.to(q('[data-hero-word]'), { xPercent: -12, ease: 'none', scrollTrigger });
     q('[data-hero-card]').forEach((card) => {
       const depth = Number(card.dataset.depth);
       gsap.to(card.firstElementChild, { yPercent: -60 * depth, ease: 'none', scrollTrigger });
     });
 
-    return () => root.removeEventListener('pointermove', onMove);
+    return () => {
+      root.removeEventListener('pointermove', onMove);
+      cleanupWord();
+    };
   });
 
   mm.add(MOTION_QUERIES.mobile, () => {
+    setupHeroWordMobile(word);
+
     gsap
       .timeline({ defaults: { ease: 'power2.out' } })
       .from(q('[data-hero-title], [data-hero-line]'), {
