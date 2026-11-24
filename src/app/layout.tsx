@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Poppins } from 'next/font/google';
 
 import 'lenis/dist/lenis.css';
 // 한글을 쓰는 글자 묶음만 그때그때 받아 오는 Pretendard (가변 굵기)
@@ -9,6 +10,9 @@ import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
 import './globals.css';
 
 const SITE_URL = 'https://about-dangdang.vercel.app';
+
+// 히어로 뒤 큰 DANGDANG 글자처럼 영문 장식 글씨에만 쓴다
+const poppins = Poppins({ weight: '700', subsets: ['latin'], variable: '--font-poppins' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -31,7 +35,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={poppins.variable}>
       <body>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
