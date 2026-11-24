@@ -11,8 +11,12 @@ import './globals.css';
 
 const SITE_URL = 'https://about-dangdang.vercel.app';
 
-// 히어로 뒤 큰 DANGDANG 글자처럼 영문 장식 글씨에만 쓴다
-const poppins = Poppins({ weight: '700', subsets: ['latin'], variable: '--font-poppins' });
+// 히어로 DANGDANG, About 큰 숫자, 섹션 라벨처럼 영문·숫자 장식 글씨에만 쓴다
+const poppins = Poppins({
+  weight: ['500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
