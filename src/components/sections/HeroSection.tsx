@@ -63,18 +63,12 @@ export default function HeroSection() {
         <div className="relative mx-auto mt-10 h-[min(420px,110vw)] w-[min(300px,72vw)] md:h-[460px] md:w-[320px] xl:contents">
           <div
             data-hero-phone
-            className="w-full xl:absolute xl:top-[190px] xl:left-[37.07%] xl:w-[360px]"
+            className="w-full [mask-image:linear-gradient(to_bottom,#000_42%,transparent_66%)] xl:absolute xl:top-[190px] xl:left-[37.07%] xl:w-[360px] xl:[mask-image:linear-gradient(to_bottom,#000_58%,transparent_92%)]"
           >
             <HeroPhoneSlideshow />
           </div>
           <HeroCards />
         </div>
-
-        {/* 폰 아랫부분이 툭 잘리지 않고 페이지로 이어지게 흰색으로 서서히 사라진다 */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-b from-transparent to-white md:h-44"
-        />
       </HeroMotion>
     </section>
   );
