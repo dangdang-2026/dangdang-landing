@@ -1,10 +1,16 @@
-import Section from '@/components/ui/Section';
+import HowItWorksPinned from '@/components/sections/howItWorks/HowItWorksPinned';
+import HowItWorksStacked from '@/components/sections/howItWorks/HowItWorksStacked';
 
-/** 이용 방법 섹션. Figma 「Landing 당당 v2」를 보고 다음 이슈에서 채운다 */
+/**
+ * 04 How it works.
+ * PC(lg 이상)는 토스처럼 폰을 고정하고 스크롤하면 단계와 화면이 바뀐다.
+ * 모바일과 동작 줄이기 사용자는 단계를 세로로 쌓아 보여 준다.
+ */
 export default function HowItWorksSection() {
   return (
-    <Section id="how-it-works" label="이용 방법" className="py-24">
-      <p className="text-sm text-ink-sub">이용 방법</p>
-    </Section>
+    <section id="how-it-works" aria-label="이용 방법">
+      <HowItWorksPinned className="hidden lg:motion-safe:block" />
+      <HowItWorksStacked className="lg:motion-safe:hidden" />
+    </section>
   );
 }
