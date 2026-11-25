@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import logo from '@/assets/images/logo.svg';
 import FooterWord from '@/components/layout/FooterWord';
-import { FOOTER_GROUPS, FOOTER_LEGAL } from '@/constants/sections';
+import { FOOTER_GROUPS, FOOTER_INFO, FOOTER_LEGAL } from '@/constants/sections';
 import { cn } from '@/lib/cn';
 
 const isExternal = (href: string) => href.startsWith('http');
@@ -65,7 +65,16 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-grey-200 pt-8 md:flex-row md:items-center md:justify-between">
+        <dl className="mt-16 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-grey-500">
+          {FOOTER_INFO.map((info) => (
+            <div key={info.label} className="flex gap-1.5">
+              <dt>{info.label}</dt>
+              <dd className="font-medium text-grey-600">{info.value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-6 flex flex-col gap-4 border-t border-grey-200 pt-8 md:flex-row md:items-center md:justify-between">
           <ul className="flex flex-wrap gap-x-4 gap-y-2 md:gap-x-6">
             {FOOTER_LEGAL.map((link) => (
               <li key={link.label}>

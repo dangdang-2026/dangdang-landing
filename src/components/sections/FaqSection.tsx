@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import RevealMotion from '@/components/motion/RevealMotion';
 import { FAQ_COPY, FAQ_ITEMS } from '@/constants/trustFaq';
 
@@ -43,7 +45,18 @@ export default function FaqSection() {
               <p className="mt-3.5 text-[15px] leading-[1.7] text-grey-700 md:text-base">
                 {item.answer.map((line) => (
                   <span key={line} className="block">
-                    {line}
+                    {/* \n은 모바일에서만 줄을 바꾼다. PC에서는 한 문장으로 이어진다 */}
+                    {line.split('\n').map((part, j) => (
+                      <Fragment key={part}>
+                        {j > 0 && (
+                          <>
+                            {' '}
+                            <br className="md:hidden" />
+                          </>
+                        )}
+                        {part}
+                      </Fragment>
+                    ))}
                   </span>
                 ))}
               </p>
