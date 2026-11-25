@@ -1,23 +1,23 @@
 'use client';
 
-import { type ComponentPropsWithoutRef, useRef } from 'react';
+import { type ComponentPropsWithoutRef, type MouseEvent, type RefObject, useRef } from 'react';
 
 import { MOTION_QUERIES, gsap, useGSAP } from '@/animations/gsap';
 import { cn } from '@/lib/cn';
 
 const SPARK_COLORS = ['#fbb315', '#ffd184', '#e39a01', '#191f28', '#ffe0ac'];
 
+type LinkProps = ComponentPropsWithoutRef<'a'> & { href: string };
+type ButtonProps = ComponentPropsWithoutRef<'button'> & { href?: never };
+type MagneticButtonProps = LinkProps | ButtonProps;
+
 /**
- * 마우스에 끌려오고(마그넷), 빛이 한 번씩 지나가고(shine), 누르면 반짝이가 터지는 링크 버튼.
- * 모션 줄이기 사용자에게는 일반 버튼처럼 동작한다.
+ * 마우스에 끌려오고(마그넷), 빛이 한 번씩 지나가고(shine), 누르면 반짝이가 터지는 버튼.
+ * href가 있으면 링크(a), 없으면 모달 같은 걸 여는 버튼(button)이 된다. 모션 줄이기 사용자에게는 일반 버튼처럼 동작한다.
  */
-export default function MagneticButton({
-  className,
-  children,
-  ...props
-}: ComponentPropsWithoutRef<'a'>) {
+export default function MagneticButton(props: MagneticButtonProps) {
   const wrap = useRef<HTMLSpanElement>(null);
-  const button = useRef<HTMLAnchorElement>(null);
+  const button = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
@@ -95,21 +95,69 @@ export default function MagneticButton({
     }
   };
 
+  const inner = (
+    <>
+      <span
+        data-shine
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-[linear-gradient(90deg,transparent,rgb(255_255_255/0.55),transparent)] motion-reduce:hidden"
+      />
+      <span className="relative">{props.children}</span>
+    </>
+  );
+
   return (
     <span ref={wrap} className="relative inline-flex p-6">
-      <a
-        ref={button}
-        onClick={burst}
-        className={cn('relative overflow-hidden', className)}
-        {...props}
-      >
-        <span
-          data-shine
-          aria-hidden
-          className="pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-[linear-gradient(90deg,transparent,rgb(255_255_255/0.55),transparent)] motion-reduce:hidden"
-        />
-        <span className="relative">{children}</span>
-      </a>
+      {typeof props.href === 'string' ? (
+        <LinkInner {...(props as LinkProps)} burst={burst} buttonRef={button}>
+          {inner}
+        </LinkInner>
+      ) : (
+        <ButtonInner {...(props as ButtonProps)} burst={burst} buttonRef={button}>
+          {inner}
+        </ButtonInner>
+      )}
     </span>
+  );
+}
+
+interface InnerExtra {
+  burst: () => void;
+  buttonRef: RefObject<HTMLElement | null>;
+}
+
+function ButtonInner({
+  burst,
+  buttonRef,
+  className,
+  onClick,
+  type = 'button',
+  ...rest
+}: ButtonProps & InnerExtra) {
+  return (
+    <button
+      ref={buttonRef as RefObject<HTMLButtonElement>}
+      type={type}
+      className={cn('relative cursor-pointer overflow-hidden', className)}
+      onClick={(event: MouseEvent<HTMLButtonElement>) => {
+        burst();
+        onClick?.(event);
+      }}
+      {...rest}
+    />
+  );
+}
+
+function LinkInner({ burst, buttonRef, className, onClick, ...rest }: LinkProps & InnerExtra) {
+  return (
+    <a
+      ref={buttonRef as RefObject<HTMLAnchorElement>}
+      className={cn('relative overflow-hidden', className)}
+      onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+        burst();
+        onClick?.(event);
+      }}
+      {...rest}
+    />
   );
 }

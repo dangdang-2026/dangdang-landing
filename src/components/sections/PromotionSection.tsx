@@ -2,8 +2,7 @@ import Image from 'next/image';
 
 import logo from '@/assets/images/logo.svg';
 import PromotionMotion from '@/components/motion/PromotionMotion';
-import MagneticButton from '@/components/ui/MagneticButton';
-import { APP_URL } from '@/constants/sections';
+import ReleaseNotice from '@/components/sections/promotion/ReleaseNotice';
 
 /** 햇살 줄기 수 (360도를 나눔) */
 const RAYS = 14;
@@ -100,18 +99,8 @@ export default function PromotionSection() {
         </div>
 
         <div data-promo-line className="mt-4">
-          <MagneticButton
-            href={`${APP_URL}/start`}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full bg-primary px-14 py-5 text-lg font-bold text-white shadow-[0_20px_40px_rgba(191,128,0,0.25)] md:px-16 md:py-6 md:text-[22px]"
-          >
-            출시 알림 받기
-          </MagneticButton>
+          <ReleaseNotice />
         </div>
-        <p data-promo-line className="text-sm text-grey-500">
-          지금은 당당 앱에서 먼저 시작해 볼 수 있어요.
-        </p>
       </PromotionMotion>
     </section>
   );
