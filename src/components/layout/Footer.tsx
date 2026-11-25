@@ -66,7 +66,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-grey-200 pt-8 md:flex-row md:items-center md:justify-between">
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+          <ul className="flex flex-wrap gap-x-4 gap-y-2 md:gap-x-6">
             {FOOTER_LEGAL.map((link) => (
               <li key={link.label}>
                 <Link

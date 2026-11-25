@@ -89,7 +89,7 @@ export default async function LegalPage({ params }: PageProps<'/legal/[slug]'>) 
           </Link>
         </div>
         <nav aria-label="약관 문서" className="mx-auto max-w-content px-5 md:px-gutter lg:hidden">
-          <ul className="-mb-px flex [scrollbar-width:none] gap-5 overflow-x-auto">
+          <ul className="-mb-px flex [scrollbar-width:none] gap-5 overflow-x-auto [mask-image:linear-gradient(to_right,#000_85%,transparent)] pr-8">
             {LEGAL_DOCS.map((item) => (
               <li key={item.slug}>
                 <Link
