@@ -11,16 +11,16 @@ export default function FaqSection() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="py-24 md:pt-[120px] md:pb-[140px]">
       <RevealMotion className="mx-auto flex max-w-content flex-col gap-10 px-5 md:px-gutter lg:flex-row lg:gap-20">
-        <div className="lg:w-[280px] lg:shrink-0">
+        <div data-heading-group className="lg:w-[280px] lg:shrink-0">
           <p
-            data-reveal
+            data-heading-eyebrow
             className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base"
           >
             {FAQ_COPY.eyebrow}
           </p>
           <h2
             id="faq-title"
-            data-reveal
+            data-heading-title
             className="mt-3 text-[28px] font-bold text-ink md:mt-5 md:text-[38px]"
           >
             {FAQ_COPY.title}
