@@ -8,6 +8,7 @@ import { ScrollTrigger, useGSAP } from '@/animations/gsap';
 import PhoneMockup from '@/components/ui/PhoneMockup';
 import { HOW_IT_WORKS_COPY, HOW_IT_WORKS_STEPS } from '@/constants/howItWorks';
 import { cn } from '@/lib/cn';
+import { withBreaks } from '@/lib/withBreaks';
 
 /** 단계마다 폰이 살짝 다르게 기운다 (토스처럼 비스듬한 폰) */
 const PHONE_TILT = [
@@ -49,15 +50,18 @@ export default function HowItWorksPinned({ className }: { className?: string }) 
   };
 
   return (
-    <div ref={track} className={cn('relative h-[300vh]', className)}>
+    <div ref={track} data-heading-group className={cn('relative h-[300vh]', className)}>
       <div className="sticky top-0 flex h-svh items-center overflow-hidden">
         <div className="mx-auto grid w-full max-w-content grid-cols-2 items-center gap-16 px-gutter">
           <div>
-            <p className="font-display text-base font-semibold tracking-[0.02em] text-yellow-600">
+            <p
+              data-heading-eyebrow
+              className="font-display text-base font-semibold tracking-[0.02em] text-yellow-600"
+            >
               {HOW_IT_WORKS_COPY.eyebrow}
             </p>
-            <h2 className="mt-4 text-[44px] leading-[1.3] font-bold whitespace-pre-line text-ink">
-              {HOW_IT_WORKS_COPY.title}
+            <h2 data-heading-title className="mt-4 text-[44px] leading-[1.3] font-bold text-ink">
+              {withBreaks(HOW_IT_WORKS_COPY.title)}
             </h2>
 
             <ol className="mt-12 border-b border-grey-100">
