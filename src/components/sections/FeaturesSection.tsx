@@ -41,19 +41,19 @@ export default function FeaturesSection() {
             >
               <div className="text-center lg:w-[420px] lg:shrink-0 lg:text-left">
                 <p
-                  data-feature-line
+                  data-feature-badge
                   className="inline-block rounded-full bg-yellow-50 px-4 py-2 text-sm font-semibold text-yellow-600"
                 >
                   기능 {i + 1} · {feature.label}
                 </p>
                 <h3
-                  data-feature-line
+                  data-feature-title
                   className="mt-5 text-[26px] leading-[1.4] font-bold whitespace-pre-line text-ink md:text-[34px]"
                 >
                   {feature.title}
                 </h3>
                 <p
-                  data-feature-line
+                  data-feature-desc
                   className="mt-5 text-base leading-[1.7] font-medium text-grey-600 md:text-[17px]"
                 >
                   {feature.description.map((line) => (
