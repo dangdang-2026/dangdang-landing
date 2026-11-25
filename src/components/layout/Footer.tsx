@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import logo from '@/assets/images/logo.svg';
+import FooterWord from '@/components/layout/FooterWord';
 import { FOOTER_GROUPS, FOOTER_LEGAL } from '@/constants/sections';
 import { cn } from '@/lib/cn';
 
@@ -83,12 +84,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <p
-        aria-hidden
-        className="pointer-events-none mt-10 -mb-[0.22em] text-center font-display text-[17vw] leading-none font-bold tracking-[-0.04em] whitespace-nowrap text-[rgb(251_179_21/0.12)] select-none"
-      >
-        DANGDANG
-      </p>
+      <FooterWord />
     </footer>
   );
 }
