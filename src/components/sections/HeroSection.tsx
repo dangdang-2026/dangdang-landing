@@ -1,8 +1,7 @@
-import appToday from '@/assets/images/app-today-before-meal.png';
 import Header from '@/components/layout/Header';
 import HeroMotion from '@/components/motion/HeroMotion';
 import HeroCards from '@/components/sections/hero/HeroCards';
-import PhoneMockup from '@/components/ui/PhoneMockup';
+import HeroPhoneSlideshow from '@/components/sections/hero/HeroPhoneSlideshow';
 import { HERO_COPY } from '@/constants/copy';
 
 /**
@@ -11,29 +10,26 @@ import { HERO_COPY } from '@/constants/copy';
  */
 export default function HeroSection() {
   return (
-    <section id="hero" aria-labelledby="hero-title" className="p-3 lg:p-6">
-      <HeroMotion className="hero-bg relative isolate mx-auto max-w-[1392px] overflow-hidden rounded-[28px] px-5 pt-5 lg:rounded-[40px] lg:px-12 lg:pt-8 xl:h-[900px]">
+    <section id="hero" aria-labelledby="hero-title" className="hero-bg">
+      <HeroMotion className="relative isolate mx-auto max-w-[1392px] overflow-hidden px-5 pt-5 lg:px-12 lg:pt-8 xl:h-[900px]">
         <p
           data-hero-word
           aria-hidden
-          className="pointer-events-none absolute top-16 left-[3%] -z-10 font-display text-[clamp(88px,16.4vw,228px)] leading-none font-bold tracking-[-0.03em] whitespace-nowrap text-[rgba(255,181,38,0.22)] select-none xl:top-10"
+          className="pointer-events-none absolute top-16 left-[3%] -z-10 font-display text-[clamp(60px,16.4vw,228px)] leading-none font-bold tracking-[-0.03em] whitespace-nowrap text-[rgba(255,181,38,0.22)] select-none xl:top-10"
         >
           DANGDANG
         </p>
 
         <Header />
 
-        <div className="relative mt-12 text-center xl:absolute xl:top-[542px] xl:left-16 xl:mt-0 xl:text-left">
-          <p
-            data-hero-line
-            className="text-[15px] font-bold text-yellow-600 xl:text-[19px] xl:text-white/90"
-          >
+        <div className="relative z-20 mt-24 text-center md:mt-44 xl:absolute xl:top-[542px] xl:left-16 xl:mt-0 xl:text-left">
+          <p data-hero-line className="text-[15px] font-bold text-yellow-600 xl:text-[19px]">
             {HERO_COPY.eyebrow}
           </p>
           <h1
             id="hero-title"
             data-hero-title
-            className="mt-3 text-[28px] leading-[1.3] font-bold text-ink md:text-[36px] xl:mt-5 xl:text-[40px] xl:text-white"
+            className="mt-3 text-[28px] leading-[1.3] font-bold text-ink md:text-[36px] xl:mt-5 xl:text-[40px]"
           >
             {HERO_COPY.titleLines[0]}
             <br />
@@ -41,7 +37,7 @@ export default function HeroSection() {
           </h1>
           <p
             data-hero-line
-            className="mt-3 text-[15px] leading-[1.6] font-medium text-grey-700 xl:mt-5 xl:text-[17px] xl:text-white"
+            className="mt-3 text-[15px] leading-[1.6] font-medium text-grey-700 xl:mt-5 xl:text-[17px]"
           >
             {HERO_COPY.descriptionLines[0]}
             <br />
@@ -56,7 +52,7 @@ export default function HeroSection() {
             </a>
             <a
               href={HERO_COPY.secondaryCta.href}
-              className="rounded-2xl bg-white/70 px-5 py-3.5 text-[15px] font-bold text-ink transition-colors hover:bg-white xl:px-6 xl:py-4 xl:text-base"
+              className="rounded-2xl bg-grey-100 px-5 py-3.5 text-[15px] font-bold text-ink transition-colors hover:bg-grey-200 xl:px-6 xl:py-4 xl:text-base"
             >
               {HERO_COPY.secondaryCta.label}
             </a>
@@ -67,14 +63,9 @@ export default function HeroSection() {
         <div className="relative mx-auto mt-10 h-[min(420px,110vw)] w-[min(300px,72vw)] md:h-[460px] md:w-[320px] xl:contents">
           <div
             data-hero-phone
-            className="w-full xl:absolute xl:top-[190px] xl:left-[37.07%] xl:w-[360px]"
+            className="w-full [mask-image:linear-gradient(to_bottom,#000_42%,transparent_66%)] xl:absolute xl:top-[190px] xl:left-[37.07%] xl:w-[360px] xl:[mask-image:linear-gradient(to_bottom,#000_58%,transparent_92%)]"
           >
-            <PhoneMockup
-              screen={appToday}
-              alt="당당 앱 오늘 화면. 저녁 드실 때 눌러 달라는 카드와 오늘 혈당 기록"
-              preload
-              className="w-full"
-            />
+            <HeroPhoneSlideshow />
           </div>
           <HeroCards />
         </div>

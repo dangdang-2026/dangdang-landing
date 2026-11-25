@@ -7,7 +7,7 @@ export default function GlassCard({ className, ...props }: ComponentPropsWithout
   return (
     <div
       className={cn(
-        'rounded-[22px] border border-white/90 bg-white/55 px-[22px] pt-[18px] pb-5 backdrop-blur-md',
+        'rounded-[22px] border border-white/90 bg-white/95 px-[22px] pt-[18px] pb-5 shadow-[0_12px_32px_rgba(25,31,40,0.08)] xl:bg-white/55 xl:backdrop-blur-md',
         className
       )}
       {...props}

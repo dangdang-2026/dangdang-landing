@@ -12,6 +12,7 @@
   --color-grey-100: #f3f4f6;
   --color-grey-200: #e5e8eb;
   --color-grey-300: #d1d6db;
+  --color-grey-400: #b0b8c1;
   --color-grey-500: #8b95a1;
   --color-grey-600: #6b7684;
   --color-grey-700: #4e5968;
@@ -41,12 +42,12 @@
 }
 
 @layer components {
-  /* 01 Hero 배경: 아래로 갈수록 진해지는 노랑 + 왼쪽 아래 주황빛 + 가운데 흰빛 */
+  /* 01 Hero 배경: 흰 페이지 위 부드러운 노란 빛 번짐. 아래로 갈수록 흰색이 되어 다음 섹션과 이어진다 */
   .hero-bg {
     background:
-      radial-gradient(35.7% 35.7% at 10.7% 75%, rgb(255 182 39 / 0.45), transparent),
-      radial-gradient(31.3% 35.7% at 50% 39.3%, rgb(255 255 255 / 0.55), transparent),
-      linear-gradient(180deg, #ffe7b8 0%, #ffd07a 55%, #ffc04a 100%);
+      radial-gradient(50% 45% at 50% 32%, rgb(255 224 172 / 0.6), transparent 70%),
+      radial-gradient(35% 40% at 12% 70%, rgb(255 194 85 / 0.28), transparent 70%),
+      radial-gradient(30% 35% at 88% 40%, rgb(255 214 140 / 0.3), transparent 70%), #ffffff;
   }
 }
 

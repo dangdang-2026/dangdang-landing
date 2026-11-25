@@ -1,17 +1,15 @@
-import Image, { type StaticImageData } from 'next/image';
+import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
 
 interface PhoneMockupProps {
-  screen: StaticImageData;
-  alt: string;
-  /** 첫 화면에 보이는 이미지면 true (LCP 이미지라 먼저 받아 온다) */
-  preload?: boolean;
+  /** 화면 안에 들어갈 내용 (앱 화면 이미지 등) */
+  children: ReactNode;
   className?: string;
 }
 
-/** 검은 테두리 폰 안에 앱 화면 이미지를 넣는다 (Figma Phone 360 × 756) */
-export default function PhoneMockup({ screen, alt, preload, className }: PhoneMockupProps) {
+/** 검은 테두리 폰 틀. 안쪽 화면 영역에 children을 넣는다 (Figma Phone 360 × 756) */
+export default function PhoneMockup({ children, className }: PhoneMockupProps) {
   return (
     <div
       className={cn(
@@ -19,15 +17,7 @@ export default function PhoneMockup({ screen, alt, preload, className }: PhoneMo
         className
       )}
     >
-      <div className="relative size-full overflow-hidden rounded-[44px] bg-white">
-        <Image
-          src={screen}
-          alt={alt}
-          preload={preload}
-          sizes="(min-width: 1024px) 340px, 70vw"
-          className="w-full"
-        />
-      </div>
+      <div className="relative size-full overflow-hidden rounded-[44px] bg-white">{children}</div>
       <div className="absolute top-[2.75%] left-1/2 h-[3.6%] w-[27%] -translate-x-1/2 rounded-full bg-ink" />
     </div>
   );
