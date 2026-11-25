@@ -2,7 +2,7 @@
 
 import { type ReactNode, useRef } from 'react';
 
-import { MOTION_QUERIES, gsap, useGSAP } from '@/animations/gsap';
+import { MOTION_QUERIES, gsap, replayOnScroll, useGSAP } from '@/animations/gsap';
 
 interface BrandStoryMotionProps {
   className?: string;
@@ -28,10 +28,8 @@ export default function BrandStoryMotion({ className, children }: BrandStoryMoti
         // 카드 01 → 02 → 03이 한 장씩 기울어진 채 올라와 바로 서고,
         // 카드가 선 직후 그 카드 그림이 움직인다
         const cards = q('[data-story-card]');
-        const tl = gsap.timeline({
-          defaults: { ease: 'power3.out' },
-          scrollTrigger: { trigger: cards[0], start: 'top 78%' },
-        });
+        const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+        replayOnScroll(tl, cards[0]);
         gsap.set(cards, { transformPerspective: 1000, transformOrigin: '50% 100%' });
         cards.forEach((card, i) => {
           const at = i * 0.55;

@@ -2,7 +2,7 @@
 
 import { type ReactNode, useRef } from 'react';
 
-import { MOTION_QUERIES, gsap, useGSAP } from '@/animations/gsap';
+import { MOTION_QUERIES, gsap, replayOnScroll, useGSAP } from '@/animations/gsap';
 
 interface PromotionMotionProps {
   className?: string;
@@ -27,11 +27,8 @@ export default function PromotionMotion({ className, children }: PromotionMotion
       const mm = gsap.matchMedia();
 
       mm.add(`${MOTION_QUERIES.desktop}, ${MOTION_QUERIES.mobile}`, () => {
-        gsap
-          .timeline({
-            defaults: { ease: 'power3.out' },
-            scrollTrigger: { trigger: section, start: 'top 70%' },
-          })
+        const tl = gsap
+          .timeline({ paused: true, defaults: { ease: 'power3.out' } })
           .from(q('[data-promo-title]'), { yPercent: 110, duration: 0.9, stagger: 0.12 })
           .from(q('[data-promo-line]'), { opacity: 0, y: 24, duration: 0.7, stagger: 0.1 }, 0.2)
           .from(
@@ -39,6 +36,7 @@ export default function PromotionMotion({ className, children }: PromotionMotion
             { scale: 0.6, rotateX: 40, opacity: 0, duration: 1.1, ease: 'back.out(1.6)' },
             0.35
           );
+        replayOnScroll(tl, section, 'top 70%');
 
         gsap.to(q('[data-promo-rays]'), { rotate: 360, duration: 120, ease: 'none', repeat: -1 });
       });
