@@ -11,7 +11,7 @@ interface BrandStoryMotionProps {
 
 /**
  * Brand Story 애니메이션. 카드가 화면에 들어오면
- * 糖과 堂이 양옆에서 다가오고, 당당이가 통통 튀며 걷고, 앰버 원이 커지며 겹친다.
+ * 카드가 01 → 02 → 03 순서로 한 장씩 올라오고, 카드마다 그림이 이어서 움직인다.
  * 모션 줄이기 사용자에게는 아무것도 하지 않는다.
  */
 export default function BrandStoryMotion({ className, children }: BrandStoryMotionProps) {
@@ -25,40 +25,49 @@ export default function BrandStoryMotion({ className, children }: BrandStoryMoti
       const mm = gsap.matchMedia();
 
       mm.add(`${MOTION_QUERIES.desktop}, ${MOTION_QUERIES.mobile}`, () => {
-        gsap.from(q('[data-story-card]'), {
-          opacity: 0,
-          y: 48,
-          duration: 0.9,
-          ease: 'power3.out',
-          stagger: 0.12,
-          scrollTrigger: { trigger: q('[data-story-card]')[0], start: 'top 80%' },
+        // 카드 01 → 02 → 03이 한 장씩 기울어진 채 올라와 바로 서고,
+        // 카드가 선 직후 그 카드 그림이 움직인다
+        const cards = q('[data-story-card]');
+        const tl = gsap.timeline({
+          defaults: { ease: 'power3.out' },
+          scrollTrigger: { trigger: cards[0], start: 'top 78%' },
         });
-
-        gsap
-          .timeline({ scrollTrigger: { trigger: q('[data-hanja]')[0], start: 'top 75%' } })
-          .from(q('[data-hanja="left"]'), {
-            xPercent: -120,
-            opacity: 0,
-            duration: 0.9,
-            ease: 'power3.out',
-          })
-          .from(
-            q('[data-hanja="right"]'),
-            { xPercent: 120, opacity: 0, duration: 0.9, ease: 'power3.out' },
-            '<'
-          )
-          .from(
-            q('[data-hanja-plus]'),
-            { scale: 0, rotate: -90, duration: 0.5, ease: 'back.out(3)' },
-            '-=0.3'
+        gsap.set(cards, { transformPerspective: 1000, transformOrigin: '50% 100%' });
+        cards.forEach((card, i) => {
+          const at = i * 0.55;
+          tl.from(
+            card,
+            { opacity: 0, y: 90, rotateX: 18, rotate: i % 2 ? 2 : -2, duration: 0.9 },
+            at
           );
-
-        gsap.from(q('[data-amber-dot]'), {
-          scale: 0,
-          duration: 0.8,
-          ease: 'back.out(2)',
-          stagger: 0.15,
-          scrollTrigger: { trigger: q('[data-amber-dot]')[0], start: 'top 80%' },
+          const cq = gsap.utils.selector(card);
+          if (i === 0) {
+            tl.from(
+              cq('[data-hanja="left"]'),
+              { xPercent: -120, opacity: 0, duration: 0.8 },
+              at + 0.35
+            )
+              .from(cq('[data-hanja="right"]'), { xPercent: 120, opacity: 0, duration: 0.8 }, '<')
+              .from(
+                cq('[data-hanja-plus]'),
+                { scale: 0, rotate: -90, duration: 0.5, ease: 'back.out(3)' },
+                '-=0.3'
+              );
+          }
+          if (i === 1) {
+            tl.from(
+              cq('[data-story-walker]'),
+              { scale: 0, duration: 0.6, ease: 'back.out(2.5)' },
+              at + 0.4
+            );
+          }
+          if (i === 2) {
+            tl.from(
+              cq('[data-amber-dot]'),
+              { scale: 0, duration: 0.7, ease: 'back.out(2)', stagger: 0.12 },
+              at + 0.35
+            );
+          }
         });
 
         // 당당이는 점선 위를 왔다 갔다 걸으며 통통 튄다
