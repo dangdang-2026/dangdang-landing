@@ -49,6 +49,12 @@ export const FOOTER_GROUPS = [
 ] as const;
 
 /** 푸터 아래 약관 링크 */
+/** 푸터 운영 정보. 사업자가 아니라서 사업자등록번호 대신 담당자를 적는다 */
+export const FOOTER_INFO = [
+  { label: '팀', value: '당당' },
+  { label: '담당자', value: '김승민, 임다현' },
+] as const;
+
 export const FOOTER_LEGAL = [
   { href: '/legal/terms', label: '이용약관', strong: false },
   { href: '/legal/privacy', label: '개인정보 처리방침', strong: true },
