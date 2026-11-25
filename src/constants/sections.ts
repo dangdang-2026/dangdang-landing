@@ -50,7 +50,8 @@ export const FOOTER_GROUPS = [
 
 /** 푸터 아래 약관 링크 */
 export const FOOTER_LEGAL = [
-  { href: `${APP_URL}/legal/terms`, label: '이용약관', strong: false },
-  { href: `${APP_URL}/legal/privacy`, label: '개인정보 처리방침', strong: true },
-  { href: `${APP_URL}/legal/sensitive`, label: '민감정보 처리 안내', strong: false },
+  { href: '/legal/terms', label: '이용약관', strong: false },
+  { href: '/legal/privacy', label: '개인정보 처리방침', strong: true },
+  { href: '/legal/sensitive', label: '민감정보 동의', strong: false },
+  { href: '/legal/transfer', label: '국외 이전 안내', strong: false },
 ] as const;

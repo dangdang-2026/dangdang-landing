@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import logo from '@/assets/images/logo.svg';
 import FooterWord from '@/components/layout/FooterWord';
@@ -18,10 +19,14 @@ export default function Footer() {
       <div className="mx-auto max-w-content px-5 md:px-gutter">
         <div className="flex flex-col gap-14 lg:flex-row lg:justify-between">
           <div>
-            <a href="#hero" className="flex w-fit items-center gap-2.5" aria-label="당당 처음으로">
+            <Link
+              href="/#hero"
+              className="flex w-fit items-center gap-2.5"
+              aria-label="당당 처음으로"
+            >
               <Image src={logo} alt="" width={32} height={32} />
               <span className="text-xl font-bold text-ink">당당</span>
-            </a>
+            </Link>
             <p className="mt-6 text-2xl leading-[1.45] font-bold text-ink md:text-[28px]">
               병원에서 받은 기준대로,
               <br />
@@ -64,17 +69,15 @@ export default function Footer() {
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {FOOTER_LEGAL.map((link) => (
               <li key={link.label}>
-                <a
+                <Link
                   href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
                   className={cn(
                     'text-[13px] transition-colors hover:text-ink',
                     link.strong ? 'font-bold text-grey-700' : 'text-grey-500'
                   )}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
