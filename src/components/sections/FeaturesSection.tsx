@@ -11,7 +11,11 @@ import { cn } from '@/lib/cn';
  */
 export default function FeaturesSection() {
   return (
-    <section id="features" aria-labelledby="features-title" className="overflow-x-clip py-24 md:py-40">
+    <section
+      id="features"
+      aria-labelledby="features-title"
+      className="overflow-x-clip py-24 md:py-40"
+    >
       <FeaturesMotion className="mx-auto max-w-content px-5 md:px-gutter">
         <div className="text-center">
           <p className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base">
