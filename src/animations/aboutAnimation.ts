@@ -24,18 +24,27 @@ export function setupAboutAnimation(root: HTMLElement) {
       scrollTrigger: { trigger: title, start: 'top 85%', end: 'bottom 40%', scrub: 0.5 },
     });
 
-    // 2. 숫자가 화면에 들어오면 아래에서 차례로 올라온다
-    replayOnScroll(
-      gsap.from(q('[data-about-number]'), {
-        paused: true,
-        yPercent: 100,
-        duration: 1,
-        ease: 'power4.out',
-        stagger: 0.15,
-      }),
-      q('[data-about-number]')[0],
-      'top 85%'
-    );
+    // 2. 숫자가 화면에 들어오면 아래에서 올라온다.
+    // 숫자마다 따로 감지해서, 모바일처럼 세로로 쌓여 있으면 첫 숫자가 화면 밖으로 나가도
+    // 아래 숫자는 남아 있다. PC처럼 한 줄에 놓이면 차례로 조금씩 늦게 올라온다.
+    const numbers = q<HTMLElement>('[data-about-number]');
+    numbers.forEach((number, i) => {
+      const top = number.getBoundingClientRect().top;
+      const rowIndex = numbers
+        .slice(0, i)
+        .filter((el) => el.getBoundingClientRect().top === top).length;
+      replayOnScroll(
+        gsap.from(number, {
+          paused: true,
+          yPercent: 100,
+          duration: 1,
+          ease: 'power4.out',
+          delay: rowIndex * 0.15,
+        }),
+        number,
+        'top 85%'
+      );
+    });
   });
 
   return mm;
