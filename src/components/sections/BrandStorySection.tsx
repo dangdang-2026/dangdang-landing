@@ -59,20 +59,29 @@ export default function BrandStorySection() {
       className="py-24 md:pt-[120px] md:pb-[140px]"
     >
       <BrandStoryMotion className="mx-auto max-w-content px-5 md:px-gutter">
-        <p className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base">
-          BRAND STORY
-        </p>
-        <h2
-          id="brand-story-title"
-          className="mt-3 text-[28px] leading-[1.4] font-bold text-ink md:mt-4 md:text-[38px]"
-        >
-          당당이라는 이름에서
-          <br />
-          모든 디자인이 시작됐어요
-        </h2>
-        <p className="mt-3 text-base font-medium text-grey-600 md:mt-4 md:text-[17px]">
-          이름에도, 캐릭터에도, 색에도 이유가 있어요.
-        </p>
+        <div data-heading-group>
+          <p
+            data-heading-eyebrow
+            className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base"
+          >
+            BRAND STORY
+          </p>
+          <h2
+            id="brand-story-title"
+            data-heading-title
+            className="mt-3 text-[28px] leading-[1.4] font-bold text-ink md:mt-4 md:text-[38px]"
+          >
+            당당이라는 이름에서
+            <br />
+            모든 디자인이 시작됐어요
+          </h2>
+          <p
+            data-heading-sub
+            className="mt-3 text-base font-medium text-grey-600 md:mt-4 md:text-[17px]"
+          >
+            이름에도, 캐릭터에도, 색에도 이유가 있어요.
+          </p>
+        </div>
 
         <ul className="mt-12 grid gap-5 md:mt-14 lg:grid-cols-3 lg:gap-6">
           <StoryCard

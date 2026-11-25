@@ -1,5 +1,6 @@
 import FloatingNav from '@/components/layout/FloatingNav';
 import Footer from '@/components/layout/Footer';
+import HeadingMotion from '@/components/motion/HeadingMotion';
 import AboutSection from '@/components/sections/AboutSection';
 import BackgroundSection from '@/components/sections/BackgroundSection';
 import BrandStorySection from '@/components/sections/BrandStorySection';
@@ -16,6 +17,7 @@ export default function HomePage() {
   return (
     <>
       <FloatingNav />
+      <HeadingMotion />
       <main>
         <HeroSection />
         <AboutSection />

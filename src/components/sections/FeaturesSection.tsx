@@ -4,6 +4,7 @@ import FeaturesMotion from '@/components/motion/FeaturesMotion';
 import PhoneMockup from '@/components/ui/PhoneMockup';
 import { FEATURES, FEATURES_COPY } from '@/constants/features';
 import { cn } from '@/lib/cn';
+import { withBreaks } from '@/lib/withBreaks';
 
 /**
  * 05 Features. 기능 3개를 큰 문장과 폰 두 대(전 → 후)로 보여 준다.
@@ -17,15 +18,19 @@ export default function FeaturesSection() {
       className="overflow-x-clip py-24 md:py-40"
     >
       <FeaturesMotion className="mx-auto max-w-content px-5 md:px-gutter">
-        <div className="text-center">
-          <p className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base">
+        <div data-heading-group className="text-center">
+          <p
+            data-heading-eyebrow
+            className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base"
+          >
             {FEATURES_COPY.eyebrow}
           </p>
           <h2
             id="features-title"
-            className="mt-3 text-[28px] leading-[1.35] font-bold whitespace-pre-line text-ink md:mt-4 md:text-[44px]"
+            data-heading-title
+            className="mt-3 text-[28px] leading-[1.35] font-bold text-ink md:mt-4 md:text-[44px]"
           >
-            {FEATURES_COPY.title}
+            {withBreaks(FEATURES_COPY.title)}
           </h2>
         </div>
 
@@ -48,9 +53,9 @@ export default function FeaturesSection() {
                 </p>
                 <h3
                   data-feature-title
-                  className="mt-5 text-[26px] leading-[1.4] font-bold whitespace-pre-line text-ink md:text-[34px]"
+                  className="mt-5 text-[26px] leading-[1.4] font-bold text-ink md:text-[34px]"
                 >
-                  {feature.title}
+                  {withBreaks(feature.title)}
                 </h3>
                 <p
                   data-feature-desc
