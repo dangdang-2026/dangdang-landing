@@ -1,4 +1,4 @@
-import { MOTION_QUERIES, SplitText, gsap } from '@/animations/gsap';
+import { MOTION_QUERIES, SplitText, gsap, replayOnScroll } from '@/animations/gsap';
 
 /** 아직 채워지지 않은 글자의 색 (grey-200) */
 const EMPTY = '#e5e8eb';
@@ -25,13 +25,17 @@ export function setupAboutAnimation(root: HTMLElement) {
     });
 
     // 2. 숫자가 화면에 들어오면 아래에서 차례로 올라온다
-    gsap.from(q('[data-about-number]'), {
-      yPercent: 100,
-      duration: 1,
-      ease: 'power4.out',
-      stagger: 0.15,
-      scrollTrigger: { trigger: q('[data-about-number]')[0], start: 'top 85%' },
-    });
+    replayOnScroll(
+      gsap.from(q('[data-about-number]'), {
+        paused: true,
+        yPercent: 100,
+        duration: 1,
+        ease: 'power4.out',
+        stagger: 0.15,
+      }),
+      q('[data-about-number]')[0],
+      'top 85%'
+    );
   });
 
   return mm;

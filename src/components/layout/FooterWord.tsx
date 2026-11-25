@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 
-import { MOTION_QUERIES, SplitText, gsap, useGSAP } from '@/animations/gsap';
+import { MOTION_QUERIES, SplitText, gsap, replayOnScroll, useGSAP } from '@/animations/gsap';
 
 /** 마우스가 이 거리(px) 안에 들어오면 글자가 솟는다 */
 const REACH = 260;
@@ -25,13 +25,17 @@ export default function FooterWord() {
 
       mm.add(`${MOTION_QUERIES.desktop}, ${MOTION_QUERIES.mobile}`, () => {
         const chars = SplitText.create(el, { type: 'chars' }).chars as HTMLElement[];
-        gsap.from(chars, {
-          yPercent: 100,
-          duration: 1,
-          ease: 'back.out(1.4)',
-          stagger: 0.06,
-          scrollTrigger: { trigger: el, start: 'top 95%' },
-        });
+        replayOnScroll(
+          gsap.from(chars, {
+            paused: true,
+            yPercent: 100,
+            duration: 1,
+            ease: 'back.out(1.4)',
+            stagger: 0.06,
+          }),
+          el,
+          'top 95%'
+        );
 
         // PC에서만 마우스 반응
         if (!window.matchMedia(MOTION_QUERIES.desktop).matches) return;

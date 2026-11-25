@@ -2,7 +2,7 @@
 
 import { type ReactNode, useRef } from 'react';
 
-import { MOTION_QUERIES, gsap, useGSAP } from '@/animations/gsap';
+import { MOTION_QUERIES, gsap, replayOnScroll, useGSAP } from '@/animations/gsap';
 
 interface RevealMotionProps {
   className?: string;
@@ -22,14 +22,17 @@ export default function RevealMotion({ className, children }: RevealMotionProps)
       if (!root) return;
       const mm = gsap.matchMedia();
       mm.add(`${MOTION_QUERIES.desktop}, ${MOTION_QUERIES.mobile}`, () => {
-        gsap.from(root.querySelectorAll('[data-reveal]'), {
-          opacity: 0,
-          y: 36,
-          duration: 0.8,
-          ease: 'power3.out',
-          stagger: 0.1,
-          scrollTrigger: { trigger: root, start: 'top 78%' },
-        });
+        replayOnScroll(
+          gsap.from(root.querySelectorAll('[data-reveal]'), {
+            paused: true,
+            opacity: 0,
+            y: 36,
+            duration: 0.8,
+            ease: 'power3.out',
+            stagger: 0.1,
+          }),
+          root
+        );
       });
       return () => mm.revert();
     },

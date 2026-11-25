@@ -1,4 +1,4 @@
-import { MOTION_QUERIES, gsap } from '@/animations/gsap';
+import { MOTION_QUERIES, gsap, replayOnScroll } from '@/animations/gsap';
 
 /**
  * Features 애니메이션. 기능마다 화면에 들어오면 글이 줄 단위로 올라오고,
@@ -14,11 +14,8 @@ export function setupFeaturesAnimation(root: HTMLElement) {
   mm.add(motionQuery, () => {
     q('[data-feature]').forEach((feature) => {
       const fq = gsap.utils.selector(feature);
-      gsap
-        .timeline({
-          defaults: { ease: 'power3.out' },
-          scrollTrigger: { trigger: feature, start: 'top 75%' },
-        })
+      const tl = gsap
+        .timeline({ paused: true, defaults: { ease: 'power3.out' } })
         .from(fq('[data-feature-line]'), { opacity: 0, y: 32, duration: 0.8, stagger: 0.12 })
         .from(fq('[data-feature-phone="0"]'), { opacity: 0, y: 80, duration: 1 }, 0.1)
         .from(
@@ -26,6 +23,7 @@ export function setupFeaturesAnimation(root: HTMLElement) {
           { opacity: 0, xPercent: -60, rotate: -6, duration: 1.1 },
           0.45
         );
+      replayOnScroll(tl, feature, 'top 75%');
     });
   });
 
