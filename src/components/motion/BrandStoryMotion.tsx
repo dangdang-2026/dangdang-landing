@@ -10,8 +10,8 @@ interface BrandStoryMotionProps {
 }
 
 /**
- * Brand Story 애니메이션. 카드가 화면에 들어오면
- * 카드가 01 → 02 → 03 순서로 한 장씩 올라오고, 카드마다 그림이 이어서 움직인다.
+ * Brand Story 애니메이션. 카드가 화면에 들어올 때마다 한 장씩 올라오고,
+ * 카드마다 그림이 이어서 움직인다.
  * 모션 줄이기 사용자에게는 아무것도 하지 않는다.
  */
 export default function BrandStoryMotion({ className, children }: BrandStoryMotionProps) {
@@ -25,26 +25,23 @@ export default function BrandStoryMotion({ className, children }: BrandStoryMoti
       const mm = gsap.matchMedia();
 
       mm.add(`${MOTION_QUERIES.desktop}, ${MOTION_QUERIES.mobile}`, () => {
-        // 카드 01 → 02 → 03이 한 장씩 기울어진 채 올라와 바로 서고,
-        // 카드가 선 직후 그 카드 그림이 움직인다
+        // 카드마다 따로 감지해서, 모바일처럼 세로로 쌓여 있어도 보이는 카드가 사라지지 않는다.
+        // PC처럼 한 줄에 놓인 카드는 01 → 02 → 03 순서로 조금씩 늦게 올라온다.
+        // 카드는 기울어진 채 올라와 바로 서고, 선 직후 그 카드 그림이 움직인다
         const cards = q('[data-story-card]');
-        const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
-        replayOnScroll(tl, cards[0]);
         gsap.set(cards, { transformPerspective: 1000, transformOrigin: '50% 100%' });
         cards.forEach((card, i) => {
-          const at = i * 0.55;
-          tl.from(
-            card,
-            { opacity: 0, y: 90, rotateX: 18, rotate: i % 2 ? 2 : -2, duration: 0.9 },
-            at
-          );
+          const rowIndex = cards.slice(0, i).filter((el) => el.offsetTop === card.offsetTop).length;
+          const tl = gsap.timeline({
+            paused: true,
+            delay: rowIndex * 0.55,
+            defaults: { ease: 'power3.out' },
+          });
+          replayOnScroll(tl, card, 'top 88%');
+          tl.from(card, { opacity: 0, y: 90, rotateX: 18, rotate: i % 2 ? 2 : -2, duration: 0.9 });
           const cq = gsap.utils.selector(card);
           if (i === 0) {
-            tl.from(
-              cq('[data-hanja="left"]'),
-              { xPercent: -120, opacity: 0, duration: 0.8 },
-              at + 0.35
-            )
+            tl.from(cq('[data-hanja="left"]'), { xPercent: -120, opacity: 0, duration: 0.8 }, 0.35)
               .from(cq('[data-hanja="right"]'), { xPercent: 120, opacity: 0, duration: 0.8 }, '<')
               .from(
                 cq('[data-hanja-plus]'),
@@ -56,14 +53,14 @@ export default function BrandStoryMotion({ className, children }: BrandStoryMoti
             tl.from(
               cq('[data-story-walker]'),
               { scale: 0, duration: 0.6, ease: 'back.out(2.5)' },
-              at + 0.4
+              0.4
             );
           }
           if (i === 2) {
             tl.from(
               cq('[data-amber-dot]'),
               { scale: 0, duration: 0.7, ease: 'back.out(2)', stagger: 0.12 },
-              at + 0.35
+              0.35
             );
           }
         });

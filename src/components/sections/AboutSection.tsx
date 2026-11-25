@@ -49,14 +49,14 @@ export default function AboutSection() {
           {ABOUT_COPY.descriptionLines[2]}
         </p>
 
-        <ul className="mt-16 grid w-full gap-8 text-left md:mt-[88px] md:grid-cols-3 md:gap-4">
+        <ul className="mt-16 grid w-full gap-8 md:mt-[88px] md:grid-cols-3 md:gap-4 md:text-left">
           {ABOUT_COPY.numbers.map((item, i) => (
             <li
               key={item.caption}
               className={
                 i === 0
-                  ? 'flex items-end gap-3 md:flex-col md:items-start md:gap-0'
-                  : 'flex items-end gap-3 md:flex-col md:items-center md:gap-0'
+                  ? 'flex items-end justify-center gap-3 md:flex-col md:items-start md:gap-0'
+                  : 'flex items-end justify-center gap-3 md:flex-col md:items-center md:gap-0'
               }
             >
               <span className="block overflow-hidden">

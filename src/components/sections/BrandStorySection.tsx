@@ -6,12 +6,15 @@ import characterBounce from '@/assets/images/character-bounce.svg';
 import BrandStoryMotion from '@/components/motion/BrandStoryMotion';
 
 function StoryCard({
+  order,
   number,
   title,
   visual,
   lines,
   note,
 }: {
+  /** 위 카드가 아래 카드 앞에 오도록 쓰는 순서 (위로 스크롤해 다시 올라올 때 덮이지 않게) */
+  order: number;
   number: string;
   title: string;
   visual: ReactNode;
@@ -21,6 +24,7 @@ function StoryCard({
   return (
     <li
       data-story-card
+      style={{ zIndex: 3 - order }}
       className="flex flex-col gap-5 rounded-[32px] bg-grey-50 px-6 pt-6 pb-8 md:gap-[22px] md:px-7 md:pt-7 md:pb-9"
     >
       <div className="relative h-[220px] overflow-hidden rounded-3xl bg-yellow-50 md:h-[240px]">
@@ -85,6 +89,7 @@ export default function BrandStorySection() {
 
         <ul className="mt-12 grid gap-5 md:mt-14 lg:grid-cols-3 lg:gap-6">
           <StoryCard
+            order={0}
             number="01"
             title="糖 + 堂 = 당당"
             lines={[
@@ -110,6 +115,7 @@ export default function BrandStorySection() {
             }
           />
           <StoryCard
+            order={1}
             number="02"
             title="걷는 D"
             lines={[
@@ -135,6 +141,7 @@ export default function BrandStorySection() {
             }
           />
           <StoryCard
+            order={2}
             number="03"
             title="포인트에만 앰버"
             lines={['앰버는 버튼과 꼭 봐야 할 순간에만 써서', '기록 화면이 차분해요.']}

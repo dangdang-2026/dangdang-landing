@@ -9,7 +9,7 @@ export default function TrustSection() {
   return (
     <section id="trust" aria-labelledby="trust-title" className="bg-grey-50 py-24 md:py-[140px]">
       <RevealMotion className="mx-auto max-w-content px-5 md:px-gutter">
-        <div data-heading-group>
+        <div data-heading-group className="text-center md:text-left">
           <p
             data-heading-eyebrow
             className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base"
@@ -26,11 +26,13 @@ export default function TrustSection() {
         </div>
 
         <ul className="mt-12 grid gap-4 md:mt-14 md:grid-cols-3 md:gap-6">
-          {TRUST_ITEMS.map((item) => (
+          {TRUST_ITEMS.map((item, i) => (
             <li
               key={item.title}
               data-reveal
-              className="rounded-[28px] bg-white px-7 pt-7 pb-8 transition-transform duration-300 hover:-translate-y-1 md:px-8 md:pt-8 md:pb-9"
+              // 위로 스크롤해 윗 카드가 다시 올라올 때 아래 카드에 덮이지 않게 위 카드를 앞에 둔다
+              style={{ zIndex: TRUST_ITEMS.length - i }}
+              className="flex flex-col items-center rounded-[28px] bg-white px-7 pt-7 pb-8 text-center transition-transform duration-300 hover:-translate-y-1 md:items-start md:px-8 md:pt-8 md:pb-9 md:text-left"
             >
               <span className="inline-flex rounded-3xl bg-[linear-gradient(135deg,#fff6e5_0%,#ffeccb_71%)] p-3.5">
                 <Image
