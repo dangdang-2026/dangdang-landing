@@ -22,17 +22,27 @@ export default function RevealMotion({ className, children }: RevealMotionProps)
       if (!root) return;
       const mm = gsap.matchMedia();
       mm.add(`${MOTION_QUERIES.desktop}, ${MOTION_QUERIES.mobile}`, () => {
-        replayOnScroll(
-          gsap.from(root.querySelectorAll('[data-reveal]'), {
-            paused: true,
-            opacity: 0,
-            y: 36,
-            duration: 0.8,
-            ease: 'power3.out',
-            stagger: 0.1,
-          }),
-          root
-        );
+        // 카드 하나하나가 따로 반응해야 아래에서 올라올 때도 보이는 것부터 다시 나온다.
+        // 같은 줄(PC 카드 3개)은 들어오는 순서대로 조금씩 늦게 나온다.
+        const items = Array.from(root.querySelectorAll<HTMLElement>('[data-reveal]'));
+        items.forEach((item, i) => {
+          const sameRow = items[i - 1]?.offsetTop === item.offsetTop;
+          const rowIndex = sameRow
+            ? items.slice(0, i).filter((el) => el.offsetTop === item.offsetTop).length
+            : 0;
+          replayOnScroll(
+            gsap.from(item, {
+              paused: true,
+              opacity: 0,
+              y: 36,
+              duration: 0.8,
+              ease: 'power3.out',
+              delay: rowIndex * 0.12,
+            }),
+            item,
+            'top 88%'
+          );
+        });
       });
       return () => mm.revert();
     },
