@@ -41,7 +41,7 @@ export default function HeroPhoneSlideshow() {
 
   return (
     <div ref={ref} className="relative">
-      <PhoneMockup className="w-full">
+      <PhoneMockup className="w-full max-xl:shadow-none">
         {HERO_SCREENS.map((screen, i) => (
           <Image
             key={screen.label}

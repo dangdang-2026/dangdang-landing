@@ -15,14 +15,14 @@ export default function HeroSection() {
         <p
           data-hero-word
           aria-hidden
-          className="pointer-events-none absolute top-16 left-[3%] -z-10 font-display text-[clamp(88px,16.4vw,228px)] leading-none font-bold tracking-[-0.03em] whitespace-nowrap text-[rgba(255,181,38,0.22)] select-none xl:top-10"
+          className="pointer-events-none absolute top-16 left-[3%] -z-10 font-display text-[clamp(60px,16.4vw,228px)] leading-none font-bold tracking-[-0.03em] whitespace-nowrap text-[rgba(255,181,38,0.22)] select-none xl:top-10"
         >
           DANGDANG
         </p>
 
         <Header />
 
-        <div className="relative z-20 mt-12 text-center xl:absolute xl:top-[542px] xl:left-16 xl:mt-0 xl:text-left">
+        <div className="relative z-20 mt-24 text-center md:mt-44 xl:absolute xl:top-[542px] xl:left-16 xl:mt-0 xl:text-left">
           <p data-hero-line className="text-[15px] font-bold text-yellow-600 xl:text-[19px]">
             {HERO_COPY.eyebrow}
           </p>

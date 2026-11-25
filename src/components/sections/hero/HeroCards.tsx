@@ -29,7 +29,7 @@ export default function HeroCards() {
       <div
         data-hero-card
         data-depth="1.4"
-        className="absolute top-40 -right-10 w-[180px] md:-right-40 md:w-[210px] xl:top-[250px] xl:right-auto xl:left-[72.56%] xl:w-[250px]"
+        className="absolute top-40 -right-10 w-max md:-right-44 xl:top-[250px] xl:right-auto xl:left-[72.56%] xl:w-[250px]"
       >
         <GlassCard
           data-hero-float
