@@ -11,7 +11,7 @@ export default function FaqSection() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="py-24 md:pt-[120px] md:pb-[140px]">
       <RevealMotion className="mx-auto flex max-w-content flex-col gap-10 px-5 md:px-gutter lg:flex-row lg:gap-20">
-        <div data-heading-group className="lg:w-[280px] lg:shrink-0">
+        <div data-heading-group className="text-center lg:w-[280px] lg:shrink-0 lg:text-left">
           <p
             data-heading-eyebrow
             className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base"

@@ -26,7 +26,9 @@ export default function HowItWorksStacked({ className }: { className?: string })
         {HOW_IT_WORKS_STEPS.map((step) => (
           <li key={step.number} data-reveal className="flex flex-col items-center text-center">
             <span className="font-display text-sm font-semibold text-primary">{step.number}</span>
-            <h3 className="mt-2 text-xl leading-[1.4] font-bold text-ink">{step.title}</h3>
+            <h3 className="mt-2 text-xl leading-[1.4] font-bold text-balance break-keep text-ink">
+              {step.title}
+            </h3>
             <p className="mt-2 text-[15px] leading-[1.6] font-medium text-grey-600">
               {step.description[0]}
               <br />
