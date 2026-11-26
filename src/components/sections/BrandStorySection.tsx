@@ -25,9 +25,9 @@ function StoryCard({
     <li
       data-story-card
       style={{ zIndex: 3 - order }}
-      className="flex flex-col gap-5 rounded-[32px] bg-grey-50 px-6 pt-6 pb-8 md:gap-[22px] md:px-7 md:pt-7 md:pb-9"
+      className="flex flex-col items-center gap-5 rounded-[32px] bg-grey-50 px-6 pt-6 pb-8 text-center md:gap-[22px] md:px-7 md:pt-7 md:pb-9 lg:items-stretch lg:text-left"
     >
-      <div className="relative h-[220px] overflow-hidden rounded-3xl bg-yellow-50 md:h-[240px]">
+      <div className="relative h-[220px] w-full overflow-hidden rounded-3xl bg-yellow-50 md:h-[240px]">
         {visual}
       </div>
       <p className="flex items-center gap-2.5">
@@ -63,7 +63,7 @@ export default function BrandStorySection() {
       className="py-24 md:pt-[120px] md:pb-[140px]"
     >
       <BrandStoryMotion className="mx-auto max-w-content px-5 md:px-gutter">
-        <div data-heading-group>
+        <div data-heading-group className="text-center lg:text-left">
           <p
             data-heading-eyebrow
             className="font-display text-sm font-semibold tracking-[0.02em] text-yellow-600 md:text-base"
