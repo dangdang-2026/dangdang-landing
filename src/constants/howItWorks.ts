@@ -32,7 +32,7 @@ export const HOW_IT_WORKS_STEPS = [
   },
   {
     number: '03',
-    title: '모인 기록은 진료 때 A4 한 장으로 보여 드려요',
+    title: '모인 기록은 진료 때 A4\u00a0한 장으로 보여 드려요',
     description: [
       '진료일 사이의 혈당과 물어볼 것을 한 장에 모아요.',
       '해석 없이 기록만 담아서 그대로 보여 주면 돼요.',
